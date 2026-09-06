@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: uncensored-ai-chatbot
+    runtime: node
+    plan: free
+    autoDeploy: false
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ORCA_API_KEY
+        sync: false
+      - key: PORT
+        value: "10000"
+      - key: MODEL_NAME
+        value: obsidian/Qwen3.8-27B
+      - key: ORCA_API_BASE_URL
+        value: https://api.orcarouter.ai/v1
+      - key: MAX_TOKENS
+        value: "4096"
+      - key: TEMPERATURE
+        value: "0.7"
+    healthCheckPath: /api/health
